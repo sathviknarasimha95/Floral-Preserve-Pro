@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, BarChart3 } from "lucide-react";
 import textureImage from "@assets/generated_images/subtle_frost_texture_background.png";
 
 export function About() {
@@ -18,30 +18,43 @@ export function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-primary font-bold tracking-wider uppercase text-sm mb-4">About Presavia</h2>
+            <h2 className="text-green-600 font-bold tracking-wider uppercase text-sm mb-4">The Game Changer</h2>
             <h3 className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6 leading-tight">
-              More Than Just <br/>Cold Storage.
+              Turn Seasonal Price <br/>Swings Into Profit
             </h3>
             <p className="text-slate-600 text-lg leading-relaxed mb-6">
-              Presavia is a premium facility dedicated solely to the floral industry. We understand that flowers are delicate living organisms that require precise temperature and humidity management to maintain their value.
-            </p>
-            <p className="text-slate-600 text-lg leading-relaxed mb-8">
-              Founded by logistics experts and floriculture specialists, we provide an unbroken cold chain that extends vase life and reduces wastage for wholesalers and florists.
+              Traditional cold storage is 5-7 days maximum. Presavia's proprietary technology extends freshness to 30 days—unlocking a game-changing opportunity:
             </p>
             
-            <div className="space-y-4">
-              {[
-                "Specialized humidity control for different flower varieties",
-                "24/7 Temperature monitoring with redundant power",
-                "Dedicated handling by floral preservation experts",
-                "Strategic location for easy distribution"
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-3">
-                  <CheckCircle2 className="text-primary h-5 w-5 shrink-0" />
-                  <span className="text-slate-700 font-medium">{item}</span>
+            <div className="space-y-4 mb-8">
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="text-green-600 h-6 w-6 shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-bold text-slate-900 mb-1">Buy Wholesale in Off-Season</h4>
+                  <p className="text-slate-600 text-sm">Stock up when Valentine's roses are 70% cheaper. Zero waste for 30 days.</p>
                 </div>
-              ))}
+              </div>
+
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="text-green-600 h-6 w-6 shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-bold text-slate-900 mb-1">Sell Premium When Prices Peak</h4>
+                  <p className="text-slate-600 text-sm">Wedding season arrives. Demand skyrockets. Your inventory is perfectly fresh and available.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <CheckCircle2 className="text-green-600 h-6 w-6 shrink-0 mt-1" />
+                <div>
+                  <h4 className="font-bold text-slate-900 mb-1">Eliminate Spoilage Risk</h4>
+                  <p className="text-slate-600 text-sm">Standard facilities force you to sell fast or lose inventory. With 30 days, you control the timing.</p>
+                </div>
+              </div>
             </div>
+
+            <p className="text-slate-600 text-base italic">
+              "A florist storing 500 crates could buy at $2/stem and sell at $8/stem during peak season. That's a 300x multiplier on your investment."
+            </p>
           </motion.div>
 
           <motion.div
@@ -51,17 +64,39 @@ export function About() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
-            <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl relative z-10">
-               {/* Using the logo as a placeholder graphic here or a nice generic flower image if I had one, 
-                   but let's use a nice colored block with the logo for brand reinforcement */}
-               <div className="w-full h-full bg-slate-100 flex items-center justify-center relative">
-                  <div className="absolute inset-0 bg-linear-to-br from-blue-50 to-blue-100" />
-                  <img src="attached_assets/generated-image_(9)_1766582251849.png" alt="Presavia Logo" className="w-2/3 h-auto object-contain relative z-10 opacity-90" />
-               </div>
+            <div className="space-y-6">
+              {/* Profit Scenario Card */}
+              <div className="bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-200 rounded-2xl p-8 shadow-xl">
+                <div className="flex items-center gap-3 mb-4">
+                  <BarChart3 className="text-green-600 h-8 w-8" />
+                  <h4 className="text-xl font-bold text-slate-900">Profit Example</h4>
+                </div>
+                
+                <div className="space-y-4 text-sm">
+                  <div>
+                    <div className="text-slate-600 mb-1">Off-Season Purchase</div>
+                    <div className="text-2xl font-bold text-green-600">500 crates @ $2/stem</div>
+                    <div className="text-slate-500">= $5,000 investment</div>
+                  </div>
+
+                  <div className="border-t-2 border-slate-200 pt-4">
+                    <div className="text-slate-600 mb-1">Peak Season Sale (30 days later)</div>
+                    <div className="text-2xl font-bold text-blue-600">500 crates @ $8/stem</div>
+                    <div className="text-slate-500">= $20,000 revenue</div>
+                  </div>
+
+                  <div className="bg-green-500/10 border border-green-300 rounded-lg p-4 mt-4">
+                    <div className="text-slate-600 mb-1">YOUR PROFIT</div>
+                    <div className="text-3xl font-bold text-green-600">$15,000</div>
+                    <div className="text-xs text-slate-600">300% Return on Storage Cost</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6">
+                <p className="text-sm text-slate-600"><span className="font-bold text-slate-900">Key Insight:</span> Without Presavia's 30-day freshness, those blooms would wilt in days, forcing you to sell at off-season rates. Timing is everything.</p>
+              </div>
             </div>
-            {/* Decorative elements */}
-            <div className="absolute -bottom-6 -right-6 w-64 h-64 bg-primary/10 rounded-full blur-3xl -z-10" />
-            <div className="absolute -top-6 -left-6 w-64 h-64 bg-cyan-400/10 rounded-full blur-3xl -z-10" />
           </motion.div>
         </div>
       </div>

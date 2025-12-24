@@ -17,9 +17,9 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "About", href: "#about" },
+    { name: "How It Works", href: "#about" },
     { name: "Services", href: "#services" },
-    { name: "Benefits", href: "#benefits" },
+    { name: "Calculator", href: "#calculator" },
     { name: "Pricing", href: "#pricing" },
     { name: "Contact", href: "#contact" },
   ];
@@ -34,11 +34,10 @@ export function Navbar() {
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link href="/">
           <a className="flex items-center gap-2 group cursor-pointer">
-             {/* Using the logo image if available, otherwise fallback to icon */}
-            <div className="text-primary transition-transform duration-500 group-hover:rotate-180">
+            <div className="text-green-600 transition-transform duration-500 group-hover:rotate-180">
               <Snowflake className="h-8 w-8" />
             </div>
-            <span className={cn("text-2xl font-display font-bold tracking-tight text-foreground", scrolled ? "text-foreground" : "text-foreground")}>
+            <span className={cn("text-2xl font-display font-bold tracking-tight", scrolled ? "text-slate-900" : "text-slate-900")}>
               PRESAVIA
             </span>
           </a>
@@ -50,19 +49,19 @@ export function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
+              className="text-sm font-medium text-slate-700 hover:text-green-600 transition-colors"
             >
               {link.name}
             </a>
           ))}
-          <Button className="bg-primary hover:bg-primary/90 text-white rounded-full px-6">
-            Get a Quote
+          <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6">
+            Start Earning
           </Button>
         </div>
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden text-foreground"
+          className="md:hidden text-slate-900"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X /> : <Menu />}
@@ -77,14 +76,14 @@ export function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-base font-medium text-foreground hover:text-primary py-2"
+                className="text-base font-medium text-slate-700 hover:text-green-600 py-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.name}
               </a>
             ))}
-            <Button className="w-full bg-primary text-white rounded-full">
-              Get a Quote
+            <Button className="w-full bg-green-600 text-white rounded-full">
+              Start Earning
             </Button>
           </div>
         </div>
