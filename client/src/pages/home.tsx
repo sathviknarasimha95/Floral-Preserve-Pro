@@ -7,7 +7,6 @@ import { Benefits } from "@/components/sections/Benefits";
 import { ProfitCalculator } from "@/components/sections/ProfitCalculator";
 import { FacilityHighlights } from "@/components/sections/FacilityHighlights";
 import { Testimonials } from "@/components/sections/Testimonials";
-import { Pricing } from "@/components/sections/Pricing";
 import { Contact } from "@/components/sections/Contact";
 
 export default function Home() {
@@ -22,7 +21,6 @@ export default function Home() {
         <Benefits />
         <ProfitCalculator />
         <Testimonials />
-        <Pricing />
         <Contact />
       </main>
       <Footer />
