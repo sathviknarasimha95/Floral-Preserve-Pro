@@ -8,7 +8,7 @@ const highlightSteps = [
   },
   {
     icon: <Clock className="h-10 w-10 text-white" />,
-    text: "Extends shelf life upto standard 7-30 days.",
+    text: "Extends shelf life upto standard 25-30 days.",
   },
   {
     icon: <Recycle className="h-10 w-10 text-white" />,
