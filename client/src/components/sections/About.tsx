@@ -1,33 +1,39 @@
 import { motion } from "framer-motion";
-import { CheckCircle2, TrendingUp, Calendar, ArrowRight, ShieldCheck } from "lucide-react";
+import { TrendingUp, Calendar, ArrowRight, ShieldCheck, User } from "lucide-react";
 
 export function About() {
-  const steps = [
+  const storySteps = [
     {
-      icon: <Calendar className="h-8 w-8 text-blue-500" />,
-      title: "Buy Wholesale (Off-Season)",
-      subtitle: "Prices are at their lowest",
-      desc: "Stock up when Valentine's roses are 70% cheaper. Buy at $2/stem.",
+      icon: <div className="relative"><User className="h-10 w-10 text-slate-700" /><Calendar className="h-6 w-6 text-blue-500 absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-sm" /></div>,
+      label: "The Smart Procure",
+      person: "Arjun the Florist",
+      action: "Buys 5,000 Roses",
+      context: "Market price is low ($2/stem)",
+      desc: "Arjun notices prices have dipped. He secures a massive stock for just $10k.",
       color: "blue"
     },
     {
-      icon: <ShieldCheck className="h-8 w-8 text-cyan-500" />,
-      title: "Store for 30 Days",
-      subtitle: "500% Longer Preservation",
-      desc: "Our technology keeps blooms market-fresh for a full month. Zero waste.",
+      icon: <div className="relative"><ShieldCheck className="h-10 w-10 text-cyan-500" /></div>,
+      label: "The Presavia Hold",
+      person: "30-Day Freshness",
+      action: "Locked in Climate",
+      context: "Flowers remain perfect",
+      desc: "While others' stock wilts, Arjun's roses stay fresh in our facility for 30 days.",
       color: "cyan"
     },
     {
-      icon: <TrendingUp className="h-8 w-8 text-green-500" />,
-      title: "Sell at Peak Price",
-      subtitle: "300% Profit Multiplier",
-      desc: "Wedding season spikes. Sell your perfectly fresh inventory at $8/stem.",
+      icon: <div className="relative"><User className="h-10 w-10 text-slate-700" /><TrendingUp className="h-6 w-6 text-green-500 absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-sm" /></div>,
+      label: "The Peak Sale",
+      person: "Market Demand Spikes",
+      action: "Sells at $8/stem",
+      context: "Revenue: $40,000",
+      desc: "Wedding season hits. Arjun sells his fresh stock when prices are at their highest.",
       color: "green"
     }
   ];
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden bg-slate-50">
+    <section id="about" className="py-24 relative overflow-hidden bg-white">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-20">
           <motion.h2 
@@ -36,7 +42,7 @@ export function About() {
             viewport={{ once: true }}
             className="text-green-600 font-bold tracking-wider uppercase text-sm mb-4"
           >
-            The Game Changer
+            The Arbitrage Story
           </motion.h2>
           <motion.h3 
             initial={{ opacity: 0, y: 10 }}
@@ -45,7 +51,7 @@ export function About() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6"
           >
-            Turn Seasonal Price Swings Into Profit
+            How Arjun Made $30k in 30 Days
           </motion.h3>
           <motion.p 
             initial={{ opacity: 0, y: 10 }}
@@ -54,130 +60,109 @@ export function About() {
             transition={{ delay: 0.2 }}
             className="text-slate-600 text-lg"
           >
-            Standard cold storage lasts 5-7 days. Presavia extends that to 30 days, unlocking a massive arbitrage opportunity for florists.
+            See how the 30-day window transforms a standard florist's business into a high-margin trading operation.
           </motion.p>
         </div>
 
-        {/* Infographic Steps with Storytelling Arrows */}
-        <div className="relative mb-24 max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-4 relative z-10">
-            {steps.map((step, i) => (
-              <div key={i} className="flex flex-col lg:flex-row items-center">
+        {/* Horizontal Storytelling Path */}
+        <div className="relative mb-24 max-w-6xl mx-auto px-4">
+          {/* Connector Line (Desktop) */}
+          <div className="hidden lg:block absolute top-[48px] left-[10%] right-[10%] h-1 bg-slate-100 -z-0" />
+          
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-4 relative z-10">
+            {storySteps.map((step, i) => (
+              <div key={i} className="flex flex-col items-center">
                 <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.3 }}
-                  className="flex flex-col items-center text-center group flex-1"
+                  className="flex flex-col items-center text-center group w-full"
                 >
-                  <div className={`w-24 h-24 rounded-full bg-white shadow-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 border-4 border-slate-50 relative z-10`}>
-                    <div className={`absolute inset-0 bg-slate-100 rounded-full scale-90 -z-10`} />
+                  {/* Icon Circle */}
+                  <div className={`w-24 h-24 rounded-full bg-white shadow-xl flex items-center justify-center mb-6 border-4 border-slate-50 relative z-10 group-hover:scale-110 transition-transform duration-500`}>
                     {step.icon}
-                    <div className="absolute -top-1 -right-1 w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-sm shadow-lg">
-                      {i + 1}
-                    </div>
                   </div>
-                  <h4 className="text-xl font-bold text-slate-900 mb-2">{step.title}</h4>
-                  <div className={`text-xs font-bold text-slate-500 uppercase tracking-widest mb-3`}>{step.subtitle}</div>
-                  <p className="text-slate-600 text-sm leading-relaxed max-w-[240px]">
-                    {step.desc}
-                  </p>
+
+                  {/* Text Content */}
+                  <div className="space-y-2">
+                    <div className={`text-[10px] font-bold text-${step.color}-600 uppercase tracking-[0.2em]`}>
+                      {step.label}
+                    </div>
+                    <h4 className="text-xl font-bold text-slate-900">{step.person}</h4>
+                    <div className="text-sm font-medium text-slate-800 bg-slate-100 inline-block px-3 py-1 rounded-full">
+                      {step.action}
+                    </div>
+                    <div className="text-xs text-slate-500 italic mt-1">{step.context}</div>
+                    <p className="text-slate-600 text-sm leading-relaxed mt-4 max-w-[260px] mx-auto">
+                      {step.desc}
+                    </p>
+                  </div>
                 </motion.div>
 
-                {/* Arrow Connector (Desktop) */}
-                {i < steps.length - 1 && (
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: (i + 0.5) * 0.3 }}
-                    className="hidden lg:flex items-center justify-center w-16 mb-24"
-                  >
-                    <ArrowRight className="h-8 w-8 text-slate-300 animate-pulse" strokeWidth={3} />
-                  </motion.div>
+                {/* Desktop Connecting Arrow */}
+                {i < storySteps.length - 1 && (
+                  <div className="hidden lg:block absolute top-[36px] translate-x-1/2 left-[calc(33%*${i+1}-8%)]">
+                    <motion.div
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ repeat: Infinity, duration: 2 }}
+                    >
+                      <ArrowRight className="h-6 w-6 text-slate-300" strokeWidth={3} />
+                    </motion.div>
+                  </div>
                 )}
-
-                {/* Arrow Connector (Mobile) */}
-                {i < steps.length - 1 && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: -10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="lg:hidden my-8"
-                  >
-                    <ArrowRight className="h-8 w-8 text-slate-300 rotate-90" strokeWidth={3} />
-                  </motion.div>
+                
+                {/* Mobile Connecting Arrow */}
+                {i < storySteps.length - 1 && (
+                  <div className="lg:hidden my-6">
+                    <ArrowRight className="h-8 w-8 text-slate-200 rotate-90" strokeWidth={3} />
+                  </div>
                 )}
               </div>
             ))}
           </div>
         </div>
 
-        {/* The Math Box */}
+        {/* The Result Card */}
         <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-white rounded-3xl p-8 md:p-12 shadow-2xl border border-slate-100 relative overflow-hidden"
+          className="bg-slate-900 rounded-[2rem] p-8 md:p-12 text-white relative overflow-hidden shadow-2xl"
         >
-          <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/5 rounded-full blur-3xl -mr-32 -mt-32" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-green-500/10 rounded-full blur-3xl -mr-48 -mt-48" />
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-100 text-green-700 text-xs font-bold uppercase mb-6">
-                <TrendingUp className="h-3 w-3" />
-                Live Profit Scenario
-              </div>
-              <h4 className="text-3xl font-display font-bold text-slate-900 mb-6">The Power of 30-Day Timing</h4>
-              <p className="text-slate-600 mb-8 italic">
-                "A florist storing 500 crates could buy at $2/stem and sell at $8/stem during peak season. That's a 300x multiplier on your investment."
+              <h4 className="text-3xl md:text-4xl font-display font-bold mb-6">Arjun's Profit Ledger</h4>
+              <p className="text-slate-400 text-lg mb-8 leading-relaxed">
+                By using Presavia as a strategic "Hold" facility, Arjun transformed his usual 15% margin into a <span className="text-green-400 font-bold">300% profit engine.</span>
               </p>
               
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="text-green-600 h-5 w-5" />
-                  <span className="text-slate-700 font-medium">Eliminate forced off-season sales</span>
+              <div className="grid grid-cols-2 gap-4">
+                <div className="bg-white/5 border border-white/10 p-4 rounded-xl">
+                  <div className="text-slate-500 text-[10px] uppercase font-bold mb-1">Buy Low</div>
+                  <div className="text-xl font-bold">$10,000</div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="text-green-600 h-5 w-5" />
-                  <span className="text-slate-700 font-medium">Protect inventory during sudden demand spikes</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <CheckCircle2 className="text-green-600 h-5 w-5" />
-                  <span className="text-slate-700 font-medium">30 days = Zero spoilage risk</span>
+                <div className="bg-green-500/10 border border-green-500/20 p-4 rounded-xl">
+                  <div className="text-green-400 text-[10px] uppercase font-bold mb-1">Sell High</div>
+                  <div className="text-xl font-bold">$40,000</div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-slate-900 rounded-2xl p-8 text-white">
-              <div className="space-y-6">
-                <div className="flex justify-between items-end border-b border-slate-700 pb-4">
-                  <div>
-                    <div className="text-slate-400 text-xs uppercase font-bold mb-1">Buy Price</div>
-                    <div className="text-2xl font-bold">$2.00</div>
-                  </div>
-                  <ArrowRight className="text-slate-600 mb-2" />
-                  <div className="text-right">
-                    <div className="text-slate-400 text-xs uppercase font-bold mb-1">Sell Price</div>
-                    <div className="text-2xl font-bold text-green-400">$8.00</div>
-                  </div>
+            <div className="bg-linear-to-br from-green-500 to-emerald-700 p-8 rounded-3xl text-center shadow-2xl transform lg:rotate-2">
+              <div className="text-white/80 text-sm uppercase font-bold mb-2">Net Gain in 30 Days</div>
+              <div className="text-6xl font-display font-bold mb-4">$30,000</div>
+              <p className="text-white/70 text-sm italic">"I didn't just sell flowers, I traded time." — Arjun</p>
+              <div className="mt-6 pt-6 border-t border-white/20">
+                <div className="flex justify-between text-sm">
+                  <span>Storage Cost:</span>
+                  <span className="font-bold">-$450</span>
                 </div>
-
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="p-4 rounded-xl bg-white/5 border border-white/10">
-                    <div className="text-slate-400 text-[10px] uppercase font-bold mb-1">Total Investment</div>
-                    <div className="text-xl font-bold">$5,000</div>
-                  </div>
-                  <div className="p-4 rounded-xl bg-green-500/10 border border-green-500/20">
-                    <div className="text-green-400 text-[10px] uppercase font-bold mb-1">Gross Revenue</div>
-                    <div className="text-xl font-bold">$20,000</div>
-                  </div>
-                </div>
-
-                <div className="p-6 rounded-xl bg-linear-to-r from-green-600 to-emerald-600 text-center">
-                  <div className="text-white/80 text-xs uppercase font-bold mb-1">Your Net Profit</div>
-                  <div className="text-4xl font-display font-bold">$15,000</div>
-                  <div className="text-[10px] text-white/60 mt-2 italic">*Based on 500 crates / 30-day storage</div>
+                <div className="flex justify-between text-sm mt-1">
+                  <span>Waste:</span>
+                  <span className="font-bold text-green-300">0%</span>
                 </div>
               </div>
             </div>
