@@ -4,8 +4,8 @@ import { TrendingUp, Calendar, ArrowRight, ShieldCheck, User } from "lucide-reac
 export function About() {
   const storySteps = [
     {
-      icon: <div className="relative"><User className="h-10 w-10 text-slate-700" /><Calendar className="h-6 w-6 text-blue-500 absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-sm" /></div>,
-      label: "The Smart Procure",
+      icon: <div className="relative"><User className="h-10 w-10 text-slate-700" /><Calendar className="h-6 w-6 text-blue-500 absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-sm border border-slate-100" /></div>,
+      label: "THE SMART PROCURE",
       person: "Arjun the Florist",
       action: "Buys 50,000 Roses",
       context: "Market price is low (₹10/stem)",
@@ -14,7 +14,7 @@ export function About() {
     },
     {
       icon: <div className="relative"><ShieldCheck className="h-10 w-10 text-cyan-500" /></div>,
-      label: "The Presavia Hold",
+      label: "THE PRESAVIA HOLD",
       person: "30-Day Freshness",
       action: "Locked in Climate",
       context: "Flowers remain perfect",
@@ -22,8 +22,8 @@ export function About() {
       color: "cyan"
     },
     {
-      icon: <div className="relative"><User className="h-10 w-10 text-slate-700" /><TrendingUp className="h-6 w-6 text-green-500 absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-sm" /></div>,
-      label: "The Peak Sale",
+      icon: <div className="relative"><User className="h-10 w-10 text-slate-700" /><TrendingUp className="h-6 w-6 text-green-500 absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-sm border border-slate-100" /></div>,
+      label: "THE PEAK SALE",
       person: "Market Demand Spikes",
       action: "Sells at ₹50/stem",
       context: "Revenue: ₹25,00,000",
@@ -43,13 +43,8 @@ export function About() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
-  };
-
-  const arrowVariants = {
-    hidden: { opacity: 0, scale: 0 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } }
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
   };
 
   return (
@@ -62,7 +57,7 @@ export function About() {
             viewport={{ once: true }}
             className="text-green-600 font-bold tracking-wider uppercase text-sm mb-4"
           >
-            The Arbitrage Story
+            THE ARBITRAGE STORY
           </motion.h2>
           <motion.h3 
             initial={{ opacity: 0, y: 10 }}
@@ -84,70 +79,59 @@ export function About() {
           </motion.p>
         </div>
 
-        {/* Horizontal Storytelling Path with Animation */}
-        <div className="relative mb-24 max-w-6xl mx-auto px-4">
-          {/* Connector Line (Desktop) */}
-          <div className="hidden lg:block absolute top-[48px] left-[10%] right-[10%] h-1 bg-slate-100 -z-0" />
-          
+        {/* Horizontal Storytelling Cards */}
+        <div className="relative mb-24 max-w-7xl mx-auto px-4">
           <motion.div 
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-4 relative z-10"
+            className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative z-10"
           >
             {storySteps.map((step, i) => (
-              <div key={i} className="flex flex-col lg:flex-row items-center flex-1">
-                <motion.div
-                  variants={itemVariants}
-                  className="flex flex-col items-center text-center group w-full"
-                >
-                  {/* Icon Circle */}
-                  <div className={`w-24 h-24 rounded-full bg-white shadow-xl flex items-center justify-center mb-6 border-4 border-slate-50 relative z-10 group-hover:scale-110 transition-transform duration-500`}>
-                    {step.icon}
-                  </div>
+              <motion.div
+                key={i}
+                variants={itemVariants}
+                className="flex flex-col items-center bg-white rounded-[2rem] p-10 shadow-sm border border-slate-100 hover:shadow-xl transition-all duration-500 group relative h-full"
+              >
+                {/* Step Number Bubble (Optional, based on style) */}
+                <div className="absolute top-4 right-6 text-slate-100 font-black text-6xl select-none group-hover:text-slate-200 transition-colors">
+                  0{i + 1}
+                </div>
 
-                  {/* Text Content */}
-                  <div className="space-y-2">
-                    <div className={`text-[10px] font-bold text-${step.color}-600 uppercase tracking-[0.2em]`}>
-                      {step.label}
-                    </div>
-                    <h4 className="text-xl font-bold text-slate-900">{step.person}</h4>
-                    <div className="text-sm font-medium text-slate-800 bg-slate-100 inline-block px-3 py-1 rounded-full">
-                      {step.action}
-                    </div>
-                    <div className="text-xs text-slate-500 italic mt-1">{step.context}</div>
-                    <p className="text-slate-600 text-sm leading-relaxed mt-4 max-w-[260px] mx-auto">
-                      {step.desc}
-                    </p>
-                  </div>
-                </motion.div>
+                {/* Icon Circle */}
+                <div className="w-28 h-28 rounded-full bg-white shadow-xl flex items-center justify-center mb-8 border border-slate-50 relative z-10">
+                  {step.icon}
+                </div>
 
-                {/* Desktop Connecting Arrow */}
+                {/* Text Content */}
+                <div className="space-y-4 text-center relative z-10">
+                  <div className="text-[12px] font-bold text-blue-600 uppercase tracking-[0.2em]">
+                    {step.label}
+                  </div>
+                  <h4 className="text-2xl font-display font-bold text-slate-900 leading-tight">
+                    {step.person}
+                  </h4>
+                  <div className="inline-block bg-slate-50 text-slate-800 font-bold px-6 py-2 rounded-full text-base">
+                    {step.action}
+                  </div>
+                  <div className="text-sm text-slate-400 italic font-medium">
+                    {step.context}
+                  </div>
+                  <p className="text-slate-500 text-base leading-relaxed mt-4 max-w-[280px] mx-auto">
+                    {step.desc}
+                  </p>
+                </div>
+
+                {/* Vertical Arrow for Mobile Transition */}
                 {i < storySteps.length - 1 && (
-                  <motion.div 
-                    variants={arrowVariants}
-                    className="hidden lg:flex items-center justify-center px-4 self-start mt-8"
-                  >
-                    <motion.div
-                      animate={{ x: [0, 5, 0] }}
-                      transition={{ repeat: Infinity, duration: 2 }}
-                    >
-                      <ArrowRight className="h-6 w-6 text-slate-300" strokeWidth={3} />
-                    </motion.div>
-                  </motion.div>
+                  <div className="lg:hidden absolute -bottom-6 left-1/2 -translate-x-1/2 z-20">
+                    <div className="bg-white rounded-full p-2 shadow-md border border-slate-100">
+                      <ArrowRight className="h-6 w-6 text-slate-300 rotate-90" strokeWidth={3} />
+                    </div>
+                  </div>
                 )}
-                
-                {/* Mobile Connecting Arrow */}
-                {i < storySteps.length - 1 && (
-                  <motion.div 
-                    variants={arrowVariants}
-                    className="lg:hidden my-6"
-                  >
-                    <ArrowRight className="h-8 w-8 text-slate-200 rotate-90" strokeWidth={3} />
-                  </motion.div>
-                )}
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         </div>
@@ -157,41 +141,41 @@ export function About() {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-slate-900 rounded-[2rem] p-8 md:p-12 text-white relative overflow-hidden shadow-2xl"
+          className="bg-slate-900 rounded-[2.5rem] p-8 md:p-16 text-white relative overflow-hidden shadow-2xl"
         >
           <div className="absolute top-0 right-0 w-96 h-96 bg-green-500/10 rounded-full blur-3xl -mr-48 -mt-48" />
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
             <div>
-              <h4 className="text-3xl md:text-4xl font-display font-bold mb-6">Arjun's Profit Ledger</h4>
-              <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-                By using Presavia as a strategic "Hold" facility, Arjun transformed his usual 15% margin into a <span className="text-green-400 font-bold">400% profit engine.</span>
+              <h4 className="text-4xl md:text-5xl font-display font-bold mb-8">Arjun's Profit Ledger</h4>
+              <p className="text-slate-400 text-xl mb-10 leading-relaxed max-w-lg">
+                By using Presavia as a strategic "Hold" facility, Arjun transformed his usual 15% margin into a <span className="text-green-400 font-bold underline decoration-green-400/30">400% profit engine.</span>
               </p>
               
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-white/5 border border-white/10 p-4 rounded-xl">
-                  <div className="text-slate-500 text-[10px] uppercase font-bold mb-1">Buy Low</div>
-                  <div className="text-xl font-bold">₹5,00,000</div>
+              <div className="grid grid-cols-2 gap-6">
+                <div className="bg-white/5 border border-white/10 p-6 rounded-2xl">
+                  <div className="text-slate-500 text-xs uppercase font-bold mb-2 tracking-widest">BUY LOW</div>
+                  <div className="text-2xl md:text-3xl font-bold">₹5,00,000</div>
                 </div>
-                <div className="bg-green-500/10 border border-green-500/20 p-4 rounded-xl">
-                  <div className="text-green-400 text-[10px] uppercase font-bold mb-1">Sell High</div>
-                  <div className="text-xl font-bold">₹25,00,000</div>
+                <div className="bg-green-500/10 border border-green-500/20 p-6 rounded-2xl">
+                  <div className="text-green-400 text-xs uppercase font-bold mb-2 tracking-widest">SELL HIGH</div>
+                  <div className="text-2xl md:text-3xl font-bold">₹25,00,000</div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-linear-to-br from-green-500 to-emerald-700 p-8 rounded-3xl text-center shadow-2xl transform lg:rotate-2">
-              <div className="text-white/80 text-sm uppercase font-bold mb-2">Net Gain in 30 Days</div>
-              <div className="text-5xl md:text-6xl font-display font-bold mb-4">₹20,00,000</div>
-              <p className="text-white/70 text-sm italic">"I didn't just sell flowers, I traded time." — Arjun</p>
-              <div className="mt-6 pt-6 border-t border-white/20">
-                <div className="flex justify-between text-sm">
-                  <span>Storage Cost:</span>
+            <div className="bg-gradient-to-br from-green-500 to-emerald-700 p-10 md:p-14 rounded-[2.5rem] text-center shadow-[0_0_50px_rgba(34,197,94,0.3)] transform lg:rotate-2">
+              <div className="text-white/80 text-base uppercase font-bold mb-4 tracking-widest">NET GAIN IN 30 DAYS</div>
+              <div className="text-6xl md:text-8xl font-display font-bold mb-6 tracking-tighter">₹20L</div>
+              <p className="text-white/70 text-lg italic font-light">"I didn't just sell flowers, I traded time." — Arjun</p>
+              <div className="mt-8 pt-8 border-t border-white/20 space-y-3">
+                <div className="flex justify-between text-base">
+                  <span className="opacity-80">Storage Cost:</span>
                   <span className="font-bold">-₹35,000</span>
                 </div>
-                <div className="flex justify-between text-sm mt-1">
-                  <span>Waste:</span>
-                  <span className="font-bold text-green-300">0%</span>
+                <div className="flex justify-between text-base">
+                  <span className="opacity-80">Inventory Waste:</span>
+                  <span className="font-bold text-green-300">0% (GUARANTEED)</span>
                 </div>
               </div>
             </div>
