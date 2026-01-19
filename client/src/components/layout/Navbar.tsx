@@ -3,7 +3,7 @@ import { Link } from "wouter";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import logoImage from "@assets/Grey_Minimal_Winter_Snowflake_Ice_Rink_Skating_Logo_(1)_1768846403343.png";
+import logoImage from "@assets/Grey_Minimal_Winter_Snowflake_Ice_Rink_Skating_Logo_(4)_1768846706140.png";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
