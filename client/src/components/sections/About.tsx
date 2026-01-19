@@ -58,35 +58,57 @@ export function About() {
           </motion.p>
         </div>
 
-        {/* Infographic Steps */}
-        <div className="relative mb-20">
-          {/* Connecting Line (Desktop) */}
-          <div className="hidden lg:block absolute top-1/2 left-0 w-full h-1 bg-slate-200 -translate-y-1/2 z-0" />
-          
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 relative z-10">
+        {/* Infographic Steps with Storytelling Arrows */}
+        <div className="relative mb-24 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-4 relative z-10">
             {steps.map((step, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.2 }}
-                className="flex flex-col items-center text-center group"
-              >
-                <div className={`w-20 h-20 rounded-2xl bg-white shadow-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 border border-slate-100 relative`}>
-                  <div className={`absolute inset-0 bg-${step.color}-500/5 rounded-2xl animate-pulse`} />
-                  {step.icon}
-                  {/* Step Number Badge */}
-                  <div className="absolute -top-3 -right-3 w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-sm">
-                    {i + 1}
+              <div key={i} className="flex flex-col lg:flex-row items-center">
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.3 }}
+                  className="flex flex-col items-center text-center group flex-1"
+                >
+                  <div className={`w-24 h-24 rounded-full bg-white shadow-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 border-4 border-slate-50 relative z-10`}>
+                    <div className={`absolute inset-0 bg-slate-100 rounded-full scale-90 -z-10`} />
+                    {step.icon}
+                    <div className="absolute -top-1 -right-1 w-8 h-8 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-sm shadow-lg">
+                      {i + 1}
+                    </div>
                   </div>
-                </div>
-                <h4 className="text-xl font-bold text-slate-900 mb-2">{step.title}</h4>
-                <div className={`text-sm font-bold text-${step.color}-600 uppercase tracking-wide mb-3`}>{step.subtitle}</div>
-                <p className="text-slate-600 text-sm leading-relaxed max-w-[280px]">
-                  {step.desc}
-                </p>
-              </motion.div>
+                  <h4 className="text-xl font-bold text-slate-900 mb-2">{step.title}</h4>
+                  <div className={`text-xs font-bold text-slate-500 uppercase tracking-widest mb-3`}>{step.subtitle}</div>
+                  <p className="text-slate-600 text-sm leading-relaxed max-w-[240px]">
+                    {step.desc}
+                  </p>
+                </motion.div>
+
+                {/* Arrow Connector (Desktop) */}
+                {i < steps.length - 1 && (
+                  <motion.div 
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: (i + 0.5) * 0.3 }}
+                    className="hidden lg:flex items-center justify-center w-16 mb-24"
+                  >
+                    <ArrowRight className="h-8 w-8 text-slate-300 animate-pulse" strokeWidth={3} />
+                  </motion.div>
+                )}
+
+                {/* Arrow Connector (Mobile) */}
+                {i < steps.length - 1 && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: -10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    className="lg:hidden my-8"
+                  >
+                    <ArrowRight className="h-8 w-8 text-slate-300 rotate-90" strokeWidth={3} />
+                  </motion.div>
+                )}
+              </div>
             ))}
           </div>
         </div>
