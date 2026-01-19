@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { Menu, X, Snowflake } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import logoImage from "@assets/Grey_Minimal_Winter_Snowflake_Ice_Rink_Skating_Logo_(1)_1768846403343.png";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -17,9 +18,8 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "How It Works", href: "#about" },
+    { name: "Home", href: "/" },
     { name: "Services", href: "#services" },
-    { name: "Calculator", href: "#calculator" },
     { name: "Pricing", href: "#pricing" },
     { name: "Contact", href: "#contact" },
   ];
@@ -28,18 +28,17 @@ export function Navbar() {
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-transparent",
-        scrolled ? "bg-white/90 backdrop-blur-md shadow-sm border-gray-100 py-3" : "bg-transparent py-5"
+        scrolled ? "bg-white/95 backdrop-blur-md shadow-sm border-gray-100 py-2" : "bg-transparent py-4"
       )}
     >
       <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
         <Link href="/">
-          <a className="flex items-center gap-2 group cursor-pointer">
-            <div className="text-green-600 transition-transform duration-500 group-hover:rotate-180">
-              <Snowflake className="h-8 w-8" />
-            </div>
-            <span className={cn("text-2xl font-display font-bold tracking-tight", scrolled ? "text-slate-900" : "text-slate-900")}>
-              PRESAVIA
-            </span>
+          <a className="flex items-center gap-2 cursor-pointer">
+            <img 
+              src={logoImage} 
+              alt="Presavia Logo" 
+              className={cn("transition-all duration-300", scrolled ? "h-10" : "h-12")} 
+            />
           </a>
         </Link>
 
@@ -49,13 +48,13 @@ export function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-slate-700 hover:text-green-600 transition-colors"
+              className="text-[15px] font-medium text-slate-700 hover:text-green-600 transition-colors"
             >
               {link.name}
             </a>
           ))}
-          <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6">
-            Start Earning
+          <Button className="bg-green-600 hover:bg-green-700 text-white rounded-full px-6 font-semibold">
+            Schedule a visit
           </Button>
         </div>
 
@@ -83,7 +82,7 @@ export function Navbar() {
               </a>
             ))}
             <Button className="w-full bg-green-600 text-white rounded-full">
-              Start Earning
+              Schedule a visit
             </Button>
           </div>
         </div>
