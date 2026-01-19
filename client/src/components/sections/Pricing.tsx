@@ -7,23 +7,23 @@ export function Pricing() {
     {
       name: "Starter",
       crates: 100,
-      monthlyPrice: 4500,
-      perCrate: 45,
+      monthlyPrice: 35000,
+      perCrate: 350,
       features: ["100-crate capacity", "30-day freshness guarantee", "24/7 monitoring", "Basic reporting"]
     },
     {
       name: "Growth",
       crates: 500,
-      monthlyPrice: 22500,
-      perCrate: 45,
+      monthlyPrice: 150000,
+      perCrate: 300,
       featured: true,
       features: ["500-crate capacity", "30-day freshness guarantee", "24/7 monitoring", "Detailed inventory tracking", "Priority access", "Seasonal pricing guidance"]
     },
     {
       name: "Enterprise",
       crates: 1000,
-      monthlyPrice: 40000,
-      perCrate: 40,
+      monthlyPrice: 250000,
+      perCrate: 250,
       features: ["1000+ crate capacity", "30-day freshness guarantee", "24/7 monitoring", "Advanced analytics", "Dedicated account manager", "Custom climate zones"]
     }
   ];
@@ -47,9 +47,9 @@ export function Pricing() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className={`rounded-2xl p-8 transition-all ${
+              className={`rounded-2xl p-8 transition-all relative ${
                 plan.featured
-                  ? "bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-400 shadow-2xl scale-105"
+                  ? "bg-gradient-to-br from-green-50 to-blue-50 border-2 border-green-400 shadow-2xl scale-105 z-10"
                   : "bg-white border border-slate-200 hover:shadow-lg"
               }`}
             >
@@ -61,8 +61,8 @@ export function Pricing() {
 
               <h4 className="text-xl font-bold text-slate-900 mb-2">{plan.name}</h4>
               <div className="mb-6">
-                <div className="text-4xl font-bold text-green-600">${(plan.monthlyPrice / 1000).toFixed(1)}k</div>
-                <p className="text-slate-600 text-sm mt-1">${plan.perCrate}/crate/month</p>
+                <div className="text-4xl font-bold text-green-600">₹{(plan.monthlyPrice / 100000).toFixed(1)}L</div>
+                <p className="text-slate-600 text-sm mt-1">₹{plan.perCrate}/crate/month</p>
               </div>
 
               <div className="bg-slate-100 rounded-lg p-4 mb-6">

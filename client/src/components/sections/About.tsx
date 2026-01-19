@@ -7,9 +7,9 @@ export function About() {
       icon: <div className="relative"><User className="h-10 w-10 text-slate-700" /><Calendar className="h-6 w-6 text-blue-500 absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-sm" /></div>,
       label: "The Smart Procure",
       person: "Arjun the Florist",
-      action: "Buys 5,000 Roses",
-      context: "Market price is low ($2/stem)",
-      desc: "Arjun notices prices have dipped. He secures a massive stock for just $10k.",
+      action: "Buys 50,000 Roses",
+      context: "Market price is low (₹10/stem)",
+      desc: "Arjun notices prices have dipped. He secures a massive stock for just ₹5,00,000.",
       color: "blue"
     },
     {
@@ -25,12 +25,32 @@ export function About() {
       icon: <div className="relative"><User className="h-10 w-10 text-slate-700" /><TrendingUp className="h-6 w-6 text-green-500 absolute -bottom-2 -right-2 bg-white rounded-full p-1 shadow-sm" /></div>,
       label: "The Peak Sale",
       person: "Market Demand Spikes",
-      action: "Sells at $8/stem",
-      context: "Revenue: $40,000",
+      action: "Sells at ₹50/stem",
+      context: "Revenue: ₹25,00,000",
       desc: "Wedding season hits. Arjun sells his fresh stock when prices are at their highest.",
       color: "green"
     }
   ];
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.5
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, x: -20 },
+    visible: { opacity: 1, x: 0, transition: { duration: 0.5 } }
+  };
+
+  const arrowVariants = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } }
+  };
 
   return (
     <section id="about" className="py-24 relative overflow-hidden bg-white">
@@ -51,7 +71,7 @@ export function About() {
             transition={{ delay: 0.1 }}
             className="text-4xl md:text-5xl font-display font-bold text-slate-900 mb-6"
           >
-            How Arjun Made $30k in 30 Days
+            How Arjun Made ₹20 Lakh in 30 Days
           </motion.h3>
           <motion.p 
             initial={{ opacity: 0, y: 10 }}
@@ -64,19 +84,22 @@ export function About() {
           </motion.p>
         </div>
 
-        {/* Horizontal Storytelling Path */}
+        {/* Horizontal Storytelling Path with Animation */}
         <div className="relative mb-24 max-w-6xl mx-auto px-4">
           {/* Connector Line (Desktop) */}
           <div className="hidden lg:block absolute top-[48px] left-[10%] right-[10%] h-1 bg-slate-100 -z-0" />
           
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-4 relative z-10">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-4 relative z-10"
+          >
             {storySteps.map((step, i) => (
-              <div key={i} className="flex flex-col items-center">
+              <div key={i} className="flex flex-col lg:flex-row items-center flex-1">
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.3 }}
+                  variants={itemVariants}
                   className="flex flex-col items-center text-center group w-full"
                 >
                   {/* Icon Circle */}
@@ -102,25 +125,31 @@ export function About() {
 
                 {/* Desktop Connecting Arrow */}
                 {i < storySteps.length - 1 && (
-                  <div className="hidden lg:block absolute top-[36px] translate-x-1/2 left-[calc(33%*${i+1}-8%)]">
+                  <motion.div 
+                    variants={arrowVariants}
+                    className="hidden lg:flex items-center justify-center px-4 self-start mt-8"
+                  >
                     <motion.div
                       animate={{ x: [0, 5, 0] }}
                       transition={{ repeat: Infinity, duration: 2 }}
                     >
                       <ArrowRight className="h-6 w-6 text-slate-300" strokeWidth={3} />
                     </motion.div>
-                  </div>
+                  </motion.div>
                 )}
                 
                 {/* Mobile Connecting Arrow */}
                 {i < storySteps.length - 1 && (
-                  <div className="lg:hidden my-6">
+                  <motion.div 
+                    variants={arrowVariants}
+                    className="lg:hidden my-6"
+                  >
                     <ArrowRight className="h-8 w-8 text-slate-200 rotate-90" strokeWidth={3} />
-                  </div>
+                  </motion.div>
                 )}
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         {/* The Result Card */}
@@ -136,29 +165,29 @@ export function About() {
             <div>
               <h4 className="text-3xl md:text-4xl font-display font-bold mb-6">Arjun's Profit Ledger</h4>
               <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-                By using Presavia as a strategic "Hold" facility, Arjun transformed his usual 15% margin into a <span className="text-green-400 font-bold">300% profit engine.</span>
+                By using Presavia as a strategic "Hold" facility, Arjun transformed his usual 15% margin into a <span className="text-green-400 font-bold">400% profit engine.</span>
               </p>
               
               <div className="grid grid-cols-2 gap-4">
                 <div className="bg-white/5 border border-white/10 p-4 rounded-xl">
                   <div className="text-slate-500 text-[10px] uppercase font-bold mb-1">Buy Low</div>
-                  <div className="text-xl font-bold">$10,000</div>
+                  <div className="text-xl font-bold">₹5,00,000</div>
                 </div>
                 <div className="bg-green-500/10 border border-green-500/20 p-4 rounded-xl">
                   <div className="text-green-400 text-[10px] uppercase font-bold mb-1">Sell High</div>
-                  <div className="text-xl font-bold">$40,000</div>
+                  <div className="text-xl font-bold">₹25,00,000</div>
                 </div>
               </div>
             </div>
 
             <div className="bg-linear-to-br from-green-500 to-emerald-700 p-8 rounded-3xl text-center shadow-2xl transform lg:rotate-2">
               <div className="text-white/80 text-sm uppercase font-bold mb-2">Net Gain in 30 Days</div>
-              <div className="text-6xl font-display font-bold mb-4">$30,000</div>
+              <div className="text-5xl md:text-6xl font-display font-bold mb-4">₹20,00,000</div>
               <p className="text-white/70 text-sm italic">"I didn't just sell flowers, I traded time." — Arjun</p>
               <div className="mt-6 pt-6 border-t border-white/20">
                 <div className="flex justify-between text-sm">
                   <span>Storage Cost:</span>
-                  <span className="font-bold">-$450</span>
+                  <span className="font-bold">-₹35,000</span>
                 </div>
                 <div className="flex justify-between text-sm mt-1">
                   <span>Waste:</span>

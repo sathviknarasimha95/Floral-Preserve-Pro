@@ -13,25 +13,25 @@ const testimonials = [
   {
     name: "Elena Rossi",
     role: "Owner, Bella Flora NYC",
-    profit: "$12,500/mo",
-    text: "We bought 400 crates of Valentine roses at $2/stem when everyone else had stopped ordering. Sold them all 2 weeks later at $7.50/stem during engagement season. Presavia made this possible.",
+    profit: "₹1,25,000/mo",
+    text: "We bought 400 crates of Valentine roses at ₹10/stem when everyone else had stopped ordering. Sold them all 2 weeks later at ₹75/stem during engagement season. Presavia made this possible.",
   },
   {
     name: "James Chen",
     role: "Wholesale Distributor",
-    profit: "$28,000/mo",
+    profit: "₹2,80,000/mo",
     text: "The 30-day window changed my entire business. I now predict price swings and buy accordingly. My margins have gone from 15% to 220% in season.",
   },
   {
     name: "Sarah Williams",
     role: "Wedding Florist",
-    profit: "$8,400/mo",
-    text: "I can now buy bulk at $3/stem and know I have a full month to sell premium arrangements. Wedding season peak became my profit peak.",
+    profit: "₹84,000/mo",
+    text: "I can now buy bulk at ₹30/stem and know I have a full month to sell premium arrangements. Wedding season peak became my profit peak.",
   },
   {
     name: "Marcus Thorne",
     role: "Premium Flower Supplier",
-    profit: "$35,000/mo",
+    profit: "₹3,50,000/mo",
     text: "Presavia eliminated our forced sales problem. Before, we'd lose 30% to waste. Now we control timing. This storage facility is essentially a profit engine.",
   }
 ];
