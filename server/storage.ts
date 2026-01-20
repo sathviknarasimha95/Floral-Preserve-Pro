@@ -1,6 +1,5 @@
 import { leads, type Lead, type InsertLead } from "@shared/schema";
 import { db } from "./db";
-import { eq } from "drizzle-orm";
 
 export interface IStorage {
   createLead(lead: InsertLead): Promise<Lead>;
