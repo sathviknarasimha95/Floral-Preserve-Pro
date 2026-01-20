@@ -1,4 +1,4 @@
-import { leads, type Lead, type InsertLead } from "@shared/schema";
+import { leads, type Lead, type InsertLead } from "../shared/schema";
 import { db } from "./db";
 
 export interface IStorage {
