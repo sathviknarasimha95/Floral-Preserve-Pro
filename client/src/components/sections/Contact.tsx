@@ -6,11 +6,13 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { useMutation } from "@tanstack/react-query";
+import { apiRequest } from "@/lib/queryClient";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Please enter a valid email." }),
-  company: z.string().optional(),
+  businessName: z.string().optional(),
   message: z.string().min(10, { message: "Message must be at least 10 characters." }),
 });
 
@@ -21,18 +23,36 @@ export function Contact() {
     defaultValues: {
       name: "",
       email: "",
-      company: "",
+      businessName: "",
       message: "",
     },
   });
 
+  const mutation = useMutation({
+    mutationFn: async (values: z.infer<typeof formSchema>) => {
+      return await apiRequest("POST", "/api/leads", {
+        ...values,
+        source: "contact_form",
+      });
+    },
+    onSuccess: () => {
+      toast({
+        title: "Inquiry Sent",
+        description: "Thank you for contacting PERSERVIA. We will get back to you shortly.",
+      });
+      form.reset();
+    },
+    onError: (error: any) => {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to send inquiry. Please try again.",
+        variant: "destructive",
+      });
+    },
+  });
+
   function onSubmit(values: z.infer<typeof formSchema>) {
-    toast({
-      title: "Inquiry Sent",
-      description: "Thank you for contacting Presavia. We will get back to you shortly.",
-    });
-    console.log(values);
-    form.reset();
+    mutation.mutate(values);
   }
 
   return (
@@ -58,7 +78,7 @@ export function Contact() {
                 </div>
                 <div>
                   <h5 className="font-bold text-white mb-1">Email</h5>
-                  <p className="text-slate-400 text-sm">hello@presavia.com</p>
+                  <p className="text-slate-400 text-sm">hello@perservia.com</p>
                 </div>
               </div>
             </div>
@@ -102,10 +122,10 @@ export function Contact() {
 
                 <FormField
                   control={form.control}
-                  name="company"
+                  name="businessName"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Company (Optional)</FormLabel>
+                      <FormLabel>Business Name (Optional)</FormLabel>
                       <FormControl>
                         <Input placeholder="Bloom & Co." {...field} className="bg-slate-50" />
                       </FormControl>
@@ -132,7 +152,13 @@ export function Contact() {
                   )}
                 />
 
-                <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-white">Send Inquiry</Button>
+                <Button 
+                  type="submit" 
+                  disabled={mutation.isPending}
+                  className="w-full bg-primary hover:bg-primary/90 text-white"
+                >
+                  {mutation.isPending ? "Sending..." : "Send Inquiry"}
+                </Button>
               </form>
             </Form>
           </div>
