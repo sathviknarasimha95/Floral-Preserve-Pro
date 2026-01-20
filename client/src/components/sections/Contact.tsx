@@ -6,8 +6,6 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { useMutation } from "@tanstack/react-query";
-import { apiRequest } from "@/lib/queryClient";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
@@ -28,31 +26,13 @@ export function Contact() {
     },
   });
 
-  const mutation = useMutation({
-    mutationFn: async (values: z.infer<typeof formSchema>) => {
-      return await apiRequest("POST", "/api/leads", {
-        ...values,
-        source: "contact_form",
-      });
-    },
-    onSuccess: () => {
-      toast({
-        title: "Inquiry Sent",
-        description: "Thank you for contacting PERSERVIA. We will get back to you shortly.",
-      });
-      form.reset();
-    },
-    onError: (error: any) => {
-      toast({
-        title: "Error",
-        description: error.message || "Failed to send inquiry. Please try again.",
-        variant: "destructive",
-      });
-    },
-  });
-
   function onSubmit(values: z.infer<typeof formSchema>) {
-    mutation.mutate(values);
+    toast({
+      title: "Inquiry Sent",
+      description: "Thank you for contacting PERSERVIA. We will get back to you shortly.",
+    });
+    console.log("Contact form submitted:", values);
+    form.reset();
   }
 
   return (
@@ -154,10 +134,9 @@ export function Contact() {
 
                 <Button 
                   type="submit" 
-                  disabled={mutation.isPending}
                   className="w-full bg-primary hover:bg-primary/90 text-white"
                 >
-                  {mutation.isPending ? "Sending..." : "Send Inquiry"}
+                  Send Inquiry
                 </Button>
               </form>
             </Form>

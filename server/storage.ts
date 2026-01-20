@@ -1,20 +1,5 @@
-import { leads, type Lead, type InsertLead } from "../shared/schema";
-import { db } from "./db";
+export interface IStorage {}
 
-export interface IStorage {
-  createLead(lead: InsertLead): Promise<Lead>;
-  getLeads(): Promise<Lead[]>;
-}
+export class MemStorage implements IStorage {}
 
-export class DatabaseStorage implements IStorage {
-  async createLead(insertLead: InsertLead): Promise<Lead> {
-    const [lead] = await db.insert(leads).values(insertLead).returning();
-    return lead;
-  }
-
-  async getLeads(): Promise<Lead[]> {
-    return await db.select().from(leads);
-  }
-}
-
-export const storage = new DatabaseStorage();
+export const storage = new MemStorage();
